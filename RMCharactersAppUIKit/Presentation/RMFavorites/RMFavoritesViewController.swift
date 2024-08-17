@@ -127,15 +127,17 @@ final class RMFavoritesViewController: UIViewController {
     }
 
     characterTableView.viewModel.addNewCharacters = { [weak self] in
-
-      self?.characterTableView.viewModel.characters = self?.viewModel.filteredCharacters ?? []
-      self?.characterTableView.addNewCharactersToTableView()
+        guard let self else { return }
+      self.characterTableView.viewModel.characters = self.viewModel.filteredCharacters
+        self.characterTableView.reloadTable()
     }
 
     viewModel.onFilterChange = { [weak self] in
-      self?.characterTableView.viewModel.isFilterChanged = self?.viewModel.isWaiting ?? false
-      self?.filterButtons.viewModel.filter = (self?.viewModel.filter)!
-      self?.filterMenuView.viewModel.filter = (self?.viewModel.filter)!
+        guard let self else { return }
+      self.characterTableView.viewModel.isFilterChanged = self.viewModel.isWaiting
+      self.filterButtons.viewModel.filter = (self.viewModel.filter)
+      self.filterMenuView.viewModel.filter = (self.viewModel.filter)
+        self.characterTableView.reloadTable()
     }
 
     headerView.onFilterButtonTapped = {
@@ -144,7 +146,7 @@ final class RMFavoritesViewController: UIViewController {
 
     viewModel.isCharacterListEmpty = { [weak self] isEmpty in
       print("characterlist degisti")
-      print(self?.viewModel.filteredCharacters.count)
+      print(self?.viewModel.filteredCharacters.count ?? 0)
       if isEmpty {
         self?.emptyStateText.isHidden = false
         self?.emptyStateTitle.isHidden = false

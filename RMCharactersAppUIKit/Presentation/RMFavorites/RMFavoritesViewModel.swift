@@ -93,10 +93,10 @@ class RMFavoritesViewModel {
   }
 
   private func isCharacterMatchingFilters(_ character: AdaptedCharacter) -> Bool {
-    let nameMatches = filter.name.isEmpty || character.name?.lowercased().contains(filter.name.lowercased()) == true
-    let speciesMatches = filter.species.isEmpty || character.species?.lowercased().contains(filter.species.lowercased()) == true
-    let statusMatches = filter.status.isEmpty || character.status?.contains(filter.status) == true
-    let genderMatches = filter.gender.isEmpty || character.gender?.contains(filter.gender) == true
+      let nameMatches = filter.name.isEmpty || ((character.name?.lowercased().contains(filter.name.lowercased())) != nil)
+      let speciesMatches = filter.species.isEmpty || ((character.species?.lowercased().contains(filter.species.lowercased())) != nil)
+      let statusMatches = filter.status.isEmpty || ((character.status?.contains(filter.status)) != nil)
+      let genderMatches = filter.gender.isEmpty || ((character.gender?.contains(filter.gender)) != nil)
     return nameMatches && speciesMatches && statusMatches && genderMatches
   }
 

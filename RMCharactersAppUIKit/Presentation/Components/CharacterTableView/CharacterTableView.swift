@@ -12,11 +12,7 @@ import Combine
 class CharacterTableView: UIView {
 
   // MARK: - Properties
-  var viewModel: CharacterTableViewModel {
-    didSet {
-      refreshTableViewWithNewCharacters()
-    }
-  }
+  var viewModel: CharacterTableViewModel
 
   private var tableView: UITableView!
   private lazy var emptyStateText: UILabel = {
@@ -49,12 +45,13 @@ class CharacterTableView: UIView {
 
     viewModel.dataFetched = { [weak self] in
       DispatchQueue.main.async {
-        self?.refreshTableViewWithNewCharacters()
+          self?.tableView.reloadData()
       }
     }
 
     viewModel.onFilterChange = { [weak self] in
       self?.removeAllCharactersFromTableView()
+        self?.reloadTable()
     }
 
     viewModel.isFilteredCharactersEmpty = { [weak self] isEmpty in
@@ -103,22 +100,30 @@ extension CharacterTableView: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return viewModel.characters.count
   }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: CharacterTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-    let character = viewModel.characters[indexPath.row]
-    let rowViewModel = CharacterCellViewModel(character: character, onFavoriteButtonTapped: {
-      if self.viewModel.isItFavoritesTable {
-        self.removeCharacter(at: indexPath.row) // indexPathRow ver o ve celli çıkar
-        print("character id: \(character.id)")
-        self.viewModel.removedCharacter!(character)
-      }
-    }, onCharacterDetailsButtonTapped: { character in
-      self.viewModel.onCharacterDetailsButtonTapped(character)
-    })
-    cell.configure(with: rowViewModel)
-    return cell
-  }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: CharacterTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        let character = viewModel.characters[indexPath.row]
+        let rowViewModel = CharacterCellViewModel(
+            character: character,
+            onFavoriteButtonTapped: { [weak self] in
+                self?.handleFavoriteChanges(character: character, indexPath: indexPath)
+            },
+            onCharacterDetailsButtonTapped: { [weak self] character in
+                self?.viewModel.onCharacterDetailsButtonTapped(character)
+            }
+        )
+        cell.configure(with: rowViewModel)
+        return cell
+    }
+    
+    private func handleFavoriteChanges(character: AdaptedCharacter, indexPath: IndexPath) {
+        if viewModel.isItFavoritesTable {
+            removeCharacter(at: indexPath)
+          print("character id: \(character.id)")
+          viewModel.removedCharacter!(character)
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -131,39 +136,19 @@ extension CharacterTableView: UITableViewDelegate {
     print(indexPath.row)
   }
 
-  func removeCharacter(at index: Int) {
-    guard index >= 0 && index < viewModel.characters.count else { return }
-    viewModel.characters.remove(at: index)
-    let indexPathToDelete = IndexPath(row: index, section: 0)
-    tableView.deleteRows(at: [indexPathToDelete], with: .top)
-    for num in index..<viewModel.characters.count {
-      let updatedIndexPath = IndexPath(row: num, section: 0)
-      tableView.reloadRows(at: [updatedIndexPath], with: .top)
-    }
-  }
-
-  func refreshTableViewWithNewCharacters() {
-    let previousDataCount = viewModel.oldCharacters.count
-    let newDataCount = viewModel.characters.count
-    let indexPathsToAdd = (previousDataCount..<newDataCount).map { IndexPath(row: $0, section: 0) }
-    self.tableView.insertRows(at: indexPathsToAdd, with: .top)
+    func removeCharacter(at indexPath: IndexPath) {
+        guard indexPath.row >= 0 && indexPath.row < viewModel.characters.count else { return }
+        viewModel.characters.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        reloadTable()
   }
 
   func removeAllCharactersFromTableView() {
-    guard !viewModel.characters.isEmpty else { return }
-    guard tableView.numberOfRows(inSection: 0) > 0 else { return }
-    let indexPathsToDelete = (0..<viewModel.characters.count).map { IndexPath(row: $0, section: 0) }
-    viewModel.characters.removeAll()
-    tableView.deleteRows(at: indexPathsToDelete, with: .automatic)
+      viewModel.characters.removeAll()
+      reloadTable()
   }
-
-  func addNewCharactersToTableView() {
-    let newDataCount = viewModel.characters.count
-    let indexPathsToAdd = (0..<newDataCount).map { IndexPath(row: $0, section: 0) }
-    self.tableView.insertRows(at: indexPathsToAdd, with: .top)
-  }
-
-  func reloadTable() {
-    tableView.reloadData()
-  }
+    
+    func reloadTable() {
+        tableView.reloadData()
+    }
 }

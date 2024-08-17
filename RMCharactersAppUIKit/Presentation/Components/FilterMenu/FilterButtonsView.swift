@@ -64,21 +64,24 @@ class FilterButtonsView: UIView {
     }
   }
 
-  private func createFilterButton(title: String, action: Selector) -> UIButton {
-    let button = UIButton(type: .system)
-    let buttonTitle = " \(title)"
-    button.setTitle(buttonTitle, for: .normal)
-    button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
-    button.setTitleColor(.white, for: .normal)
-    button.tintColor = .white
-    button.backgroundColor = .systemBlue
-    button.layer.borderWidth = 1.0
-    button.layer.borderColor = UIColor.systemBlue.cgColor
-    button.layer.cornerRadius = 10
-    button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 3)
-    button.addTarget(self, action: action, for: .touchUpInside)
-    return button
-  }
+    private func createFilterButton(title: String, action: Selector) -> UIButton {
+        let button = UIButton(type: .system)
+        let buttonTitle = " \(title)"
+        var configuration: UIButton.Configuration = .filled()
+        configuration.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 3)
+        configuration.baseBackgroundColor = .systemBlue
+        configuration.title = buttonTitle
+        configuration.background.backgroundColor = .systemBlue
+        configuration.background.strokeColor = .systemBlue
+        configuration.background.strokeWidth = 1.0
+        configuration.background.cornerRadius = 10
+        configuration.background.customView?.tintColor = .white
+        configuration.attributedTitle?.foregroundColor = .white
+        configuration.image = UIImage(systemName: "xmark.circle")
+        button.configuration = configuration
+        button.addTarget(self, action: action, for: .touchUpInside)
+        return button
+    }
 
   @objc func clearFilter(_ sender: UIButton) {
       guard let filterType = sender.titleLabel?.text?.trimmingCharacters(in: .whitespaces) else { return }

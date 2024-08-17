@@ -94,7 +94,7 @@ final class FavoriteService {
                     character.location,
                     character.episode
                 ])
-            print("Added favorite: \(character.name)")
+            print("Added favorite: \(character.name ?? "")")
         } catch {
             print("Error adding favorite: \(error)")
         }
@@ -108,7 +108,7 @@ final class FavoriteService {
 
         do {
             try dbConn.run("DELETE FROM favCharacters WHERE characterId = ?", [character.id])
-            print("Removed favorite: \(character.name)")
+            print("Removed favorite: \(character.name ?? "")")
         } catch {
             print("Error removing favorite: \(error)")
         }
@@ -123,15 +123,15 @@ final class FavoriteService {
         var characters: [AdaptedCharacter] = []
         do {
             let favCharacters = Table("favCharacters")
-            let id = Expression<String>("characterId")
-            let name = Expression<String>("name")
-            let image = Expression<String>("image")
-            let status = Expression<String>("status")
-            let species = Expression<String>("species")
-            let gender = Expression<String>("gender")
-            let origin = Expression<String>("origin")
-            let location = Expression<String>("location")
-            let episode = Expression<Int>("episodes")
+            let id = SQLite.Expression<String>("characterId")
+            let name = SQLite.Expression<String>("name")
+            let image = SQLite.Expression<String>("image")
+            let status = SQLite.Expression<String>("status")
+            let species = SQLite.Expression<String>("species")
+            let gender = SQLite.Expression<String>("gender")
+            let origin = SQLite.Expression<String>("origin")
+            let location = SQLite.Expression<String>("location")
+            let episode = SQLite.Expression<Int>("episodes")
             let query = favCharacters.select(id, name, image, status, species, gender, origin, location, episode)
 
             let charactersFromDB = try dbConn.prepare(query)

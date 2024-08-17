@@ -10,11 +10,11 @@ import UIKit
 final class CHDetailsViewController: UIViewController {
   var viewModel: CHDetailsViewModel
   var dismissSheet: (() -> Void)?
-
-  override func viewDidDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    dismissSheet?()
-  }
+    
+    override func endAppearanceTransition() {
+        super.endAppearanceTransition()
+        dismissSheet?()
+    }
 
   private func createImageView(
     systemName: String? = nil,

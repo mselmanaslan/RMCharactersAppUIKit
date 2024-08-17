@@ -21,7 +21,7 @@ class CharacterTableViewModel {
   var isFetching = false
   var isFilterChanged: Bool {
     didSet {
-      if isFilterChanged == true {
+      if isFilterChanged {
         // delete table characters
         onFilterChange?()
       } else {
@@ -38,21 +38,8 @@ class CharacterTableViewModel {
   }
 
   var oldCharacters: [AdaptedCharacter] = []
-  @Published var characters: [AdaptedCharacter] = [] {
-    didSet {
-      if isFilterChanged {
-        oldCharacters.removeAll()
-        print(oldCharacters.count)
-      } else {
-        oldCharacters = oldValue
-        print("else")
-      }
-      isFetching = false
-      if !isItFavoritesTable {
-        dataFetched?()
-      }
-    }
-  }
+    var cancellables: Set<AnyCancellable> = []
+  @Published var characters: [AdaptedCharacter] = []
 
   init(isFilterChanged: Bool,
        characters: [AdaptedCharacter],
@@ -65,6 +52,21 @@ class CharacterTableViewModel {
       self.isItFavoritesTable = isItFavoritesTable
       self.onCharacterDetailsButtonTapped = onCharacterDetailsButtonTapped
       self.removedCharacter = removedCharacter
+      
+      $characters
+          .first()
+          .sink { [weak self] characters in
+              if isFilterChanged {
+                  self?.oldCharacters = characters
+              } else {
+                  self?.oldCharacters = []
+              }
+              self?.isFetching = false
+              if !isItFavoritesTable {
+                  self?.dataFetched?()
+              }
+          }
+          .store(in: &cancellables)
   }
 
   func viewModelForRow(at indexPath: IndexPath) -> CharacterCellViewModel {

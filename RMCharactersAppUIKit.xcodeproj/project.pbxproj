@@ -12,7 +12,7 @@
 		0D4A74812BAB03A600AC4F4B /* CharacterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A74802BAB03A600AC4F4B /* CharacterTableView.swift */; };
 		0D4A74842BAB043900AC4F4B /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A74832BAB043900AC4F4B /* CharacterTableViewCell.swift */; };
 		0D4A74862BAB071000AC4F4B /* CharacterTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A74852BAB071000AC4F4B /* CharacterTableCellViewModel.swift */; };
-		0D4A74882BAB3A4800AC4F4B /* CharcterTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A74872BAB3A4800AC4F4B /* CharcterTableViewModel.swift */; };
+		0D4A74882BAB3A4800AC4F4B /* CharacterTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A74872BAB3A4800AC4F4B /* CharacterTableViewModel.swift */; };
 		0D4A748B2BADB00F00AC4F4B /* CharacterEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A748A2BADB00F00AC4F4B /* CharacterEnums.swift */; };
 		0D4A748E2BADC9DC00AC4F4B /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A748D2BADC9DC00AC4F4B /* UIExtensions.swift */; };
 		0D4A74912BADD1F000AC4F4B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4A74902BADD1F000AC4F4B /* Kingfisher */; };
@@ -23,7 +23,6 @@
 		0D53AC0F2BBED4F700703ECA /* FavoriteServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D53AC0E2BBED4F700703ECA /* FavoriteServiceError.swift */; };
 		0D53AC132BBEEFE900703ECA /* RMFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D53AC122BBEEFE900703ECA /* RMFavoritesViewModel.swift */; };
 		0D53AC1D2BCE0CF300703ECA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0D53AC1C2BCE0CF300703ECA /* SnapKit */; };
-		0D53AC1F2BCE0CF300703ECA /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 0D53AC1E2BCE0CF300703ECA /* SnapKit-Dynamic */; };
 		0D95F0742BE50E12005975FD /* CHDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F0732BE50E12005975FD /* CHDetailsViewModel.swift */; };
 		0DABD4A72BE7B9BC00FBE240 /* DetailsDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DABD4A62BE7B9BC00FBE240 /* DetailsDesign.swift */; };
 		0DC7B2D32BB185280082B98D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC7B2D22BB185280082B98D /* HeaderView.swift */; };
@@ -86,7 +85,7 @@
 		0D4A74802BAB03A600AC4F4B /* CharacterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableView.swift; sourceTree = "<group>"; };
 		0D4A74832BAB043900AC4F4B /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 		0D4A74852BAB071000AC4F4B /* CharacterTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableCellViewModel.swift; sourceTree = "<group>"; };
-		0D4A74872BAB3A4800AC4F4B /* CharcterTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharcterTableViewModel.swift; sourceTree = "<group>"; };
+		0D4A74872BAB3A4800AC4F4B /* CharacterTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewModel.swift; sourceTree = "<group>"; };
 		0D4A748A2BADB00F00AC4F4B /* CharacterEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEnums.swift; sourceTree = "<group>"; };
 		0D4A748D2BADC9DC00AC4F4B /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		0D53ABFF2BBBE55700703ECA /* FavoriteIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteIconView.swift; sourceTree = "<group>"; };
@@ -137,7 +136,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D53AC1F2BCE0CF300703ECA /* SnapKit-Dynamic in Frameworks */,
 				0D53AC0D2BBC179E00703ECA /* SQLite in Frameworks */,
 				0D53AC1D2BCE0CF300703ECA /* SnapKit in Frameworks */,
 				0D4A74912BADD1F000AC4F4B /* Kingfisher in Frameworks */,
@@ -190,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				0D4A74802BAB03A600AC4F4B /* CharacterTableView.swift */,
-				0D4A74872BAB3A4800AC4F4B /* CharcterTableViewModel.swift */,
+				0D4A74872BAB3A4800AC4F4B /* CharacterTableViewModel.swift */,
 			);
 			path = CharacterTableView;
 			sourceTree = "<group>";
@@ -409,7 +407,6 @@
 				0D4A74902BADD1F000AC4F4B /* Kingfisher */,
 				0D53AC0C2BBC179E00703ECA /* SQLite */,
 				0D53AC1C2BCE0CF300703ECA /* SnapKit */,
-				0D53AC1E2BCE0CF300703ECA /* SnapKit-Dynamic */,
 			);
 			productName = RMCharactersAppUIKit;
 			productReference = 0DE08CA92BA87A49004BE392 /* RMCharactersAppUIKit.app */;
@@ -562,6 +559,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/dumpOutputFile",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -637,7 +635,7 @@
 				0DE08D032BA9B103004BE392 /* AdaptedCharacter.swift in Sources */,
 				0D95F0742BE50E12005975FD /* CHDetailsViewModel.swift in Sources */,
 				0D4A74862BAB071000AC4F4B /* CharacterTableCellViewModel.swift in Sources */,
-				0D4A74882BAB3A4800AC4F4B /* CharcterTableViewModel.swift in Sources */,
+				0D4A74882BAB3A4800AC4F4B /* CharacterTableViewModel.swift in Sources */,
 				0DE08CAD2BA87A49004BE392 /* AppDelegate.swift in Sources */,
 				0D4A74842BAB043900AC4F4B /* CharacterTableViewCell.swift in Sources */,
 				0DE08CAF2BA87A49004BE392 /* SceneDelegate.swift in Sources */,
@@ -876,7 +874,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 583105408533D4E1429D0A27 /* Pods-RMCharactersAppUIKitTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -897,7 +894,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D9B4E61E6DD07C50499D15F /* Pods-RMCharactersAppUIKitTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -918,7 +914,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A41DFAB00BB96F9CE0BA0EC /* Pods-RMCharactersAppUIKit-RMCharactersAppUIKitUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VHSW9J3FQB;
@@ -937,7 +932,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BEAC9CB89C9594BF7B89249 /* Pods-RMCharactersAppUIKit-RMCharactersAppUIKitUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VHSW9J3FQB;
@@ -1035,11 +1029,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0D53AC1B2BCE0CF300703ECA /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		0D53AC1E2BCE0CF300703ECA /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0D53AC1B2BCE0CF300703ECA /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
